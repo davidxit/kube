@@ -1,0 +1,21 @@
+#  --------  Main Deployment  --------  #
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpine
+spec:
+  selector:
+    matchLabels:
+      app: alpine
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: alpine
+    spec:
+      containers:
+      - name: alpine
+        image: alpine
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo hello; sleep 10;done"]
